@@ -126,7 +126,21 @@ async function toggleLanguage() {
 function updateLanguageDisplay() {
 	const lang = languages.find((l) => l.code === settings.language)
 	if (lang) {
-		currentFlag.innerHTML = lang.flag
+		// Safely render SVG flag using DOMParser (avoid innerHTML)
+		while (currentFlag.firstChild)
+			currentFlag.removeChild(currentFlag.firstChild)
+		try {
+			const doc = new DOMParser().parseFromString(
+				lang.flag,
+				'image/svg+xml',
+			)
+			const svg = doc.documentElement
+			currentFlag.appendChild(svg)
+		} catch (e) {
+			const span = document.createElement('span')
+			span.textContent = lang.flag
+			currentFlag.appendChild(span)
+		}
 		currentLanguageName.textContent = lang.name
 	}
 }
@@ -167,7 +181,10 @@ async function saveData() {
 
 // Рендер списка сниппетов
 function renderSnippetList() {
-	snippetList.innerHTML = ''
+	// snippetList.innerHTML = ''
+	while (snippetList.firstChild) {
+		snippetList.removeChild(snippetList.firstChild)
+	}
 
 	snippets.forEach((snippet) => {
 		const item = document.createElement('div')
@@ -176,10 +193,17 @@ function renderSnippetList() {
 			item.classList.add('active')
 		}
 
-		item.innerHTML = `
-      <div class="snippet-item-label">${escapeHtml(snippet.label)}</div>
-      <div class="snippet-item-shortcut">${escapeHtml(snippet.shortcut)}</div>
-    `
+		// Build label and shortcut safely
+		const labelDiv = document.createElement('div')
+		labelDiv.className = 'snippet-item-label'
+		labelDiv.textContent = snippet.label
+
+		const shortcutDiv = document.createElement('div')
+		shortcutDiv.className = 'snippet-item-shortcut'
+		shortcutDiv.textContent = snippet.shortcut
+
+		item.appendChild(labelDiv)
+		item.appendChild(shortcutDiv)
 
 		item.addEventListener('click', () => selectSnippet(snippet.id))
 		snippetList.appendChild(item)
@@ -527,7 +551,16 @@ function showToast(messageKey, type = 'success') {
       </svg>`
 	}
 
-	toastIcon.innerHTML = iconSvg
+	// Safely render SVG icon for toast using DOMParser when possible
+	while (toastIcon.firstChild) toastIcon.removeChild(toastIcon.firstChild)
+	try {
+		const doc = new DOMParser().parseFromString(iconSvg, 'image/svg+xml')
+		const svg = doc.documentElement
+		toastIcon.appendChild(svg)
+	} catch {
+		const frag = document.createRange().createContextualFragment(iconSvg)
+		toastIcon.appendChild(frag)
+	}
 	toast.className = 'toast show'
 
 	setTimeout(() => {
@@ -541,11 +574,7 @@ function generateId() {
 }
 
 // Экранирование HTML
-function escapeHtml(text) {
-	const div = document.createElement('div')
-	div.textContent = text
-	return div.innerHTML
-}
+// Simple HTML escaping kept minimal; not used after replacing innerHTML paths
 
 // Настройка обработчиков событий
 function setupEventListeners() {
