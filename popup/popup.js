@@ -7,25 +7,36 @@ async function loadSnippets() {
 	const data = await browser.storage.local.get('snippets')
 	const snippets = data.snippets || []
 
-	if (snippets.length === 0) {
-		snippetList.innerHTML =
-			'<div class="empty-message">Нет сниппетов. Создайте их в настройках!</div>'
-		return
-	}
+    if (snippets.length === 0) {
+        const empty = document.createElement('div')
+        empty.className = 'empty-message'
+        empty.textContent = 'Нет сниппетов. Создайте их в настройках!'
+        snippetList.appendChild(empty)
+        return
+    }
 
-	snippetList.innerHTML = ''
+    // Clear safely without innerHTML
+    while (snippetList.firstChild) {
+        snippetList.removeChild(snippetList.firstChild)
+    }
 
-	snippets.forEach((snippet) => {
-		const item = document.createElement('div')
-		item.className = 'snippet-item'
+    snippets.forEach((snippet) => {
+        const item = document.createElement('div')
+        item.className = 'snippet-item'
 
-		item.innerHTML = `
-      <div class="snippet-label">${escapeHtml(snippet.label)}</div>
-      <div class="snippet-shortcut">${escapeHtml(snippet.shortcut)}</div>
-    `
+        // Build label and shortcut safely
+        const labelDiv = document.createElement('div')
+        labelDiv.className = 'snippet-label'
+        labelDiv.textContent = snippet.label
 
-		snippetList.appendChild(item)
-	})
+        const shortcutDiv = document.createElement('div')
+        shortcutDiv.className = 'snippet-shortcut'
+        shortcutDiv.textContent = snippet.shortcut
+
+        item.appendChild(labelDiv)
+        item.appendChild(shortcutDiv)
+        snippetList.appendChild(item)
+    })
 }
 
 // Открытие настроек
