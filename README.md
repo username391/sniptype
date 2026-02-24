@@ -33,4 +33,4 @@ Why not Text Blaze? Because it works in Chrome, not Firefox, and i did not find 
 ### 2. From Firefox Add-ons
 
 Install from the official store:  
-👉 (link will be added here)
+👉 https://addons.mozilla.org/en-US/firefox/addon/sniptype/
