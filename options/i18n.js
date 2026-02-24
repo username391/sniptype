@@ -54,6 +54,8 @@ const translations = {
 		toastDataExported: 'Данные экспортированы',
 		toastDataImported: 'Данные импортированы',
 		toastImportError: 'Ошибка импорта',
+
+		testSnippetPlaceHolder: 'Введите текст здесь',
 	},
 	en: {
 		import: 'Import',
@@ -109,6 +111,8 @@ const translations = {
 		toastDataExported: 'Data exported',
 		toastDataImported: 'Data imported',
 		toastImportError: 'Import error',
+
+		testSnippetPlaceHolder: 'Enter text here',
 	},
 }
 
