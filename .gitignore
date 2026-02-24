@@ -1,2 +1,8 @@
+package-lock.json
+package.json
 readme.md
 tz.md
+
+node_modules/
+web-ext-artifacts/
+
