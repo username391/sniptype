@@ -1,0 +1,51 @@
+{
+	"manifest_version": 2,
+	"name": "SnipType",
+	"version": "1.0.0",
+	"description": "Текстовые сниппеты с быстрой вставкой и рандомизацией",
+	"icons": {
+		"48": "icons/icon.png",
+		"96": "icons/icon.png"
+	},
+	"permissions": [
+		"storage",
+		"activeTab",
+		"<all_urls>"
+	],
+	"browser_action": {
+		"default_icon": {
+			"16": "icons/icon.png",
+			"32": "icons/icon.png",
+			"48": "icons/icon.png"
+		},
+		"default_title": "SnipType"
+	},
+	"options_ui": {
+		"page": "options/options.html",
+		"open_in_tab": true
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"<all_urls>"
+			],
+			"js": [
+				"content/content.js"
+			],
+			"css": [
+				"content/content.css"
+			],
+			"run_at": "document_end",
+			"all_frames": true
+		}
+	],
+	"background": {
+		"scripts": [
+			"background/background.js"
+		],
+		"persistent": false
+	},
+	"web_accessible_resources": [
+		"sounds/keypress.mp3"
+	]
+}

@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SnipType - Настройки</title>
+        <link rel="icon" type="image/png" href="../icons/icon.png" />
+        <link rel="stylesheet" href="options.css" />
+    </head>
+
+    <body>
+        <div class="container">
+            <header>
+                <h1 id="homeBtn" class="logo">✨ SnipType</h1>
+                <div class="header-actions">
+                    <button class="language-toggle-btn" id="languageToggleBtn">
+                        <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 512 512"
+                            fill="none"
+                            class="flag-icon"
+                            id="currentFlag"
+                        >
+                            <mask
+                                id="mask_current"
+                                style="mask-type: alpha"
+                                maskUnits="userSpaceOnUse"
+                                x="0"
+                                y="0"
+                                width="512"
+                                height="512"
+                            >
+                                <circle
+                                    cx="256"
+                                    cy="256"
+                                    r="256"
+                                    fill="#D9D9D9"
+                                />
+                            </mask>
+                            <g mask="url(#mask_current)">
+                                <path
+                                    d="M0 0H512V170.667H0V0Z"
+                                    fill="#F5F5F5"
+                                />
+                                <path
+                                    d="M0 170.667H512V341.333H0V170.667Z"
+                                    fill="#41479B"
+                                />
+                                <path
+                                    d="M0 341.333H512V512H0V341.333Z"
+                                    fill="#FF4B55"
+                                />
+                            </g>
+                        </svg>
+                        <span class="language-name" id="currentLanguageName"
+                            >Русский</span
+                        >
+                    </button>
+                    <button id="importBtn" class="btn btn-secondary">
+                        <span class="btn-icon">
+                            <svg
+                                viewBox="0 0 24.00 24.00"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                transform="rotate(0)matrix(1, 0, 0, 1, 0, 0)"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g
+                                    id="SVGRepo_tracerCarrier"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke="currentColor"
+                                    stroke-width="0.576"
+                                ></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <path
+                                        d="M12 4L12 14M12 14L15 11M12 14L9 11"
+                                        stroke="currentColor"
+                                        stroke-width="2.4"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    ></path>
+                                    <path
+                                        d="M12 20C7.58172 20 4 16.4183 4 12M20 12C20 14.5264 18.8289 16.7792 17 18.2454"
+                                        stroke="currentColor"
+                                        stroke-width="2.4"
+                                        stroke-linecap="round"
+                                    ></path>
+                                </g>
+                            </svg>
+                        </span>
+                        <!-- <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"> -->
+                        <!-- 	<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /> -->
+                        <!-- </svg> -->
+                        <span data-i18n="import">Импорт</span>
+                    </button>
+                    <button id="exportBtn" class="btn btn-secondary">
+                        <span class="btn-icon">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g
+                                    id="SVGRepo_tracerCarrier"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                ></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <path
+                                        d="M12 20C7.58172 20 4 16.4183 4 12M20 12C20 14.5264 18.8289 16.7792 17 18.2454"
+                                        stroke="currentColor"
+                                        stroke-width="2.4"
+                                        stroke-linecap="round"
+                                    ></path>
+                                    <path
+                                        d="M12 14L12 4M12 4L15 7M12 4L9 7"
+                                        stroke="currentColor"
+                                        stroke-width="2.4"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    ></path>
+                                </g>
+                            </svg>
+                        </span>
+                        <!-- <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"> -->
+                        <!-- 	<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" /> -->
+                        <!-- </svg> -->
+                        <span data-i18n="export">Экспорт</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="content">
+                <aside class="sidebar">
+                    <div class="sidebar-header">
+                        <h2 data-i18n="snippets">Сниппеты</h2>
+                        <button id="addSnippetBtn" class="btn btn-primary">
+                            <span class="btn-icon">
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <g
+                                        id="SVGRepo_bgCarrier"
+                                        stroke-width="0"
+                                    ></g>
+                                    <g
+                                        id="SVGRepo_tracerCarrier"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    ></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path
+                                            d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15"
+                                            stroke="currentColor"
+                                            stroke-width="2.4"
+                                            stroke-linecap="round"
+                                        ></path>
+                                        <path
+                                            d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7"
+                                            stroke="currentColor"
+                                            stroke-width="2.4"
+                                            stroke-linecap="round"
+                                        ></path>
+                                    </g>
+                                </svg>
+                            </span>
+                            <!-- <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" -->
+                            <!-- 	stroke-width="2"> -->
+                            <!-- 	<line x1="12" y1="5" x2="12" y2="19"></line> -->
+                            <!-- 	<line x1="5" y1="12" x2="19" y2="12"></line> -->
+                            <!-- </svg> -->
+                            <span data-i18n="new">Новый</span>
+                        </button>
+                    </div>
+                    <div id="snippetList" class="snippet-list"></div>
+
+                    <div class="sidebar-footer">
+                        <div class="settings-item" id="settingsBtn">
+                            <span class="btn-icon">
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <g
+                                        id="SVGRepo_bgCarrier"
+                                        stroke-width="0"
+                                    ></g>
+                                    <g
+                                        id="SVGRepo_tracerCarrier"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    ></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <circle
+                                            cx="12"
+                                            cy="12"
+                                            r="3"
+                                            stroke="currentColor"
+                                            stroke-width="2.4"
+                                        ></circle>
+                                        <path
+                                            d="M3.66122 10.6392C4.13377 10.9361 4.43782 11.4419 4.43782 11.9999C4.43781 12.558 4.13376 13.0638 3.66122 13.3607C3.33966 13.5627 3.13248 13.7242 2.98508 13.9163C2.66217 14.3372 2.51966 14.869 2.5889 15.3949C2.64082 15.7893 2.87379 16.1928 3.33973 16.9999C3.80568 17.8069 4.03865 18.2104 4.35426 18.4526C4.77508 18.7755 5.30694 18.918 5.83284 18.8488C6.07287 18.8172 6.31628 18.7185 6.65196 18.5411C7.14544 18.2803 7.73558 18.2699 8.21895 18.549C8.70227 18.8281 8.98827 19.3443 9.00912 19.902C9.02332 20.2815 9.05958 20.5417 9.15224 20.7654C9.35523 21.2554 9.74458 21.6448 10.2346 21.8478C10.6022 22 11.0681 22 12 22C12.9319 22 13.3978 22 13.7654 21.8478C14.2554 21.6448 14.6448 21.2554 14.8478 20.7654C14.9404 20.5417 14.9767 20.2815 14.9909 19.9021C15.0117 19.3443 15.2977 18.8281 15.7811 18.549C16.2644 18.27 16.8545 18.2804 17.3479 18.5412C17.6837 18.7186 17.9271 18.8173 18.1671 18.8489C18.693 18.9182 19.2249 18.7756 19.6457 18.4527C19.9613 18.2106 20.1943 17.807 20.6603 17C20.8677 16.6407 21.029 16.3614 21.1486 16.1272M20.3387 13.3608C19.8662 13.0639 19.5622 12.5581 19.5621 12.0001C19.5621 11.442 19.8662 10.9361 20.3387 10.6392C20.6603 10.4372 20.8674 10.2757 21.0148 10.0836C21.3377 9.66278 21.4802 9.13092 21.411 8.60502C21.3591 8.2106 21.1261 7.80708 20.6601 7.00005C20.1942 6.19301 19.9612 5.7895 19.6456 5.54732C19.2248 5.22441 18.6929 5.0819 18.167 5.15113C17.927 5.18274 17.6836 5.2814 17.3479 5.45883C16.8544 5.71964 16.2643 5.73004 15.781 5.45096C15.2977 5.1719 15.0117 4.6557 14.9909 4.09803C14.9767 3.71852 14.9404 3.45835 14.8478 3.23463C14.6448 2.74458 14.2554 2.35523 13.7654 2.15224C13.3978 2 12.9319 2 12 2C11.0681 2 10.6022 2 10.2346 2.15224C9.74458 2.35523 9.35523 2.74458 9.15224 3.23463C9.05958 3.45833 9.02332 3.71848 9.00912 4.09794C8.98826 4.65566 8.70225 5.17191 8.21891 5.45096C7.73557 5.73002 7.14548 5.71959 6.65205 5.4588C6.31633 5.28136 6.0729 5.18269 5.83285 5.15108C5.30695 5.08185 4.77509 5.22436 4.35427 5.54727C4.03866 5.78945 3.80569 6.19297 3.33974 7C3.13231 7.35929 2.97105 7.63859 2.85138 7.87273"
+                                            stroke="currentColor"
+                                            stroke-width="2.4"
+                                            stroke-linecap="round"
+                                        ></path>
+                                    </g>
+                                </svg>
+                            </span>
+                            <!-- <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" -->
+                            <!-- 	stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> -->
+                            <!-- 	<circle cx="12" cy="12" r="3"></circle> -->
+                            <!-- 	<path -->
+                            <!-- 		d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"> -->
+                            <!-- 	</path> -->
+                            <!-- </svg> -->
+                            <span data-i18n="settings">Настройки</span>
+                        </div>
+                    </div>
+                </aside>
+
+                <main class="main-content">
+                    <div id="homePanel" class="home-panel">
+                        <div id="emptyState" class="empty-state">
+                            <div class="empty-icon">✨</div>
+                            <h2 data-i18n="addFirstSnippet">
+                                Добавьте свой первый сниппет
+                            </h2>
+                            <p data-i18n="createSnippetDesc">
+                                Создайте сниппет для быстрой вставки текста
+                            </p>
+                        </div>
+
+                        <div
+                            id="testArea"
+                            class="test-area"
+                            style="display: none"
+                        >
+                            <h2 data-i18n="testSnippets">
+                                Тестирование сниппетов
+                            </h2>
+                            <p class="hint" data-i18n="testHint">
+                                Введите шорткат сниппета в поле ниже для
+                                проверки
+                            </p>
+                            <textarea
+                                id="testTextarea"
+                                class="test-textarea"
+                                placeholder="Введите текст здесь..."
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <div
+                        id="editorPanel"
+                        class="editor-panel"
+                        style="display: none"
+                    >
+                        <div class="editor-container">
+                            <div class="editor-main">
+                                <div class="editor-header">
+                                    <input
+                                        type="text"
+                                        id="snippetLabel"
+                                        placeholder="Название сниппета"
+                                        class="input-large"
+                                        data-i18n-placeholder="snippetName"
+                                    />
+                                    <button
+                                        id="deleteSnippetBtn"
+                                        class="btn btn-danger btn-large"
+                                    >
+                                        <span class="btn-icon">
+                                            <svg
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <g
+                                                    id="SVGRepo_bgCarrier"
+                                                    stroke-width="0"
+                                                ></g>
+                                                <g
+                                                    id="SVGRepo_tracerCarrier"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path
+                                                        d="M20.5001 6H3.5"
+                                                        stroke="currentColor"
+                                                        stroke-width="2.4"
+                                                        stroke-linecap="round"
+                                                    ></path>
+                                                    <path
+                                                        d="M9.5 11L10 16"
+                                                        stroke="currentColor"
+                                                        stroke-width="2.4"
+                                                        stroke-linecap="round"
+                                                    ></path>
+                                                    <path
+                                                        d="M14.5 11L14 16"
+                                                        stroke="currentColor"
+                                                        stroke-width="2.4"
+                                                        stroke-linecap="round"
+                                                    ></path>
+                                                    <path
+                                                        d="M6.5 6C6.55588 6 6.58382 6 6.60915 5.99936C7.43259 5.97849 8.15902 5.45491 8.43922 4.68032C8.44784 4.65649 8.45667 4.62999 8.47434 4.57697L8.57143 4.28571C8.65431 4.03708 8.69575 3.91276 8.75071 3.8072C8.97001 3.38607 9.37574 3.09364 9.84461 3.01877C9.96213 3 10.0932 3 10.3553 3H13.6447C13.9068 3 14.0379 3 14.1554 3.01877C14.6243 3.09364 15.03 3.38607 15.2493 3.8072C15.3043 3.91276 15.3457 4.03708 15.4286 4.28571L15.5257 4.57697C15.5433 4.62992 15.5522 4.65651 15.5608 4.68032C15.841 5.45491 16.5674 5.97849 17.3909 5.99936C17.4162 6 17.4441 6 17.5 6"
+                                                        stroke="currentColor"
+                                                        stroke-width="2.4"
+                                                    ></path>
+                                                    <path
+                                                        d="M18.3735 15.3991C18.1965 18.054 18.108 19.3815 17.243 20.1907C16.378 21 15.0476 21 12.3868 21H11.6134C8.9526 21 7.6222 21 6.75719 20.1907C5.89218 19.3815 5.80368 18.054 5.62669 15.3991L5.16675 8.5M18.8334 8.5L18.6334 11.5"
+                                                        stroke="currentColor"
+                                                        stroke-width="2.4"
+                                                        stroke-linecap="round"
+                                                    ></path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                        <!-- <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" -->
+                                        <!-- 	stroke-width="2"> -->
+                                        <!-- 	<polyline points="3 6 5 6 21 6"></polyline> -->
+                                        <!-- 	<path -->
+                                        <!-- 		d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"> -->
+                                        <!-- 	</path> -->
+                                        <!-- </svg> -->
+                                        <!-- <span data-i18n="delete">Удалить</span> -->
+                                        <!-- <span></span> -->
+                                    </button>
+                                </div>
+
+                                <div class="form-group">
+                                    <label
+                                        for="snippetShortcut"
+                                        data-i18n="shortcut"
+                                        >Шорткат</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="snippetShortcut"
+                                        placeholder="/hi"
+                                        class="input"
+                                    />
+                                </div>
+
+                                <div class="form-group">
+                                    <label
+                                        for="snippetBody"
+                                        data-i18n="snippetText"
+                                        >Текст сниппета</label
+                                    >
+                                    <textarea
+                                        id="snippetBody"
+                                        placeholder="Используйте панель справа для вставки..."
+                                        class="textarea"
+                                        data-i18n-placeholder="snippetPlaceholder"
+                                    ></textarea>
+                                </div>
+
+                                <div class="form-group checkbox-group">
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            id="snippetRichText"
+                                        />
+                                        <span data-i18n="richText"
+                                            >Rich текст (HTML)</span
+                                        >
+                                    </label>
+                                </div>
+
+                                <button
+                                    id="saveSnippetBtn"
+                                    class="btn btn-primary btn-large"
+                                >
+                                    <span class="btn-icon">
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <g
+                                                id="SVGRepo_bgCarrier"
+                                                stroke-width="0"
+                                            ></g>
+                                            <g
+                                                id="SVGRepo_tracerCarrier"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path
+                                                    d="M9.5 14.4L10.9286 16L14.5 12"
+                                                    stroke="currentColor"
+                                                    stroke-width="2.4"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                                <path
+                                                    d="M2 11.9997C2 7.28562 2 4.9286 3.46447 3.46413C4.70529 2.22331 6.58687 2.03382 10 2.00488M22 11.9997C22 7.28562 22 4.9286 20.5355 3.46413C19.2947 2.22331 17.4131 2.03382 14 2.00488"
+                                                    stroke="currentColor"
+                                                    stroke-width="2.4"
+                                                    stroke-linecap="round"
+                                                ></path>
+                                                <path
+                                                    d="M10 22C7.19974 22 5.79961 22 4.73005 21.455C3.78924 20.9757 3.02433 20.2108 2.54497 19.27C2 18.2004 2 16.8003 2 14C2 11.1997 2 9.79961 2.54497 8.73005C3.02433 7.78924 3.78924 7.02433 4.73005 6.54497C5.79961 6 7.19974 6 10 6H14C16.8003 6 18.2004 6 19.27 6.54497C20.2108 7.02433 20.9757 7.78924 21.455 8.73005C22 9.79961 22 11.1997 22 14C22 16.8003 22 18.2004 21.455 19.27C20.9757 20.2108 20.2108 20.9757 19.27 21.455C18.2004 22 16.8003 22 14 22"
+                                                    stroke="currentColor"
+                                                    stroke-width="2.4"
+                                                    stroke-linecap="round"
+                                                ></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <!-- <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" -->
+                                    <!-- 	stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> -->
+                                    <!-- 	<path d="M14 3v4a2 2 0 0 0 2 2h4"></path> -->
+                                    <!-- 	<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2z"></path> -->
+                                    <!-- 	<polyline points="17 21 17 13 7 13 7 21"></polyline> -->
+                                    <!-- 	<polyline points="7 3 7 8 15 8"></polyline> -->
+                                    <!-- </svg> -->
+                                    <span data-i18n="save">Сохранить</span>
+                                </button>
+                            </div>
+
+                            <aside class="editor-sidebar">
+                                <h3 data-i18n="insertPanel">Панель вставки</h3>
+
+                                <div class="insert-section">
+                                    <h4 data-i18n="randomization">
+                                        Рандомизация
+                                    </h4>
+                                    <p
+                                        class="insert-hint"
+                                        data-i18n="randomizationHint"
+                                    >
+                                        Случайный выбор из вариантов
+                                    </p>
+                                    <div class="insert-form">
+                                        <textarea
+                                            id="randomVariants"
+                                            class="insert-input"
+                                            rows="3"
+                                            placeholder="вариант1&#10;вариант2&#10;вариант3"
+                                            data-i18n-placeholder="variantsPlaceholder"
+                                        ></textarea>
+                                        <button
+                                            class="btn btn-primary btn-small"
+                                            id="insertRandomBtn"
+                                            data-i18n="insert"
+                                        >
+                                            Вставить
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="insert-section">
+                                    <h4 data-i18n="clipboard">Буфер обмена</h4>
+                                    <p
+                                        class="insert-hint"
+                                        data-i18n="clipboardHint"
+                                    >
+                                        Вставка из буфера обмена
+                                    </p>
+                                    <button
+                                        class="btn btn-primary btn-small"
+                                        id="insertClipboardBtn"
+                                        data-i18n="insertClipboard"
+                                    >
+                                        Вставить {clipboard}
+                                    </button>
+                                </div>
+
+                                <div class="insert-section disabled">
+                                    <h4 data-i18n="variables">Переменные</h4>
+                                    <p
+                                        class="insert-hint"
+                                        data-i18n="comingSoon"
+                                    >
+                                        Скоро...
+                                    </p>
+                                </div>
+
+                                <div class="insert-section disabled">
+                                    <h4 data-i18n="formulas">Формулы</h4>
+                                    <p
+                                        class="insert-hint"
+                                        data-i18n="comingSoon"
+                                    >
+                                        Скоро...
+                                    </p>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+
+                    <div id="settingsPanel" class="settings-panel">
+                        <div class="settings-group">
+                            <h3 data-i18n="sound">Звук</h3>
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="enableSound" />
+                                    <span data-i18n="enableSound"
+                                        >Включить звук при вставке</span
+                                    >
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="soundVolume" data-i18n="volume"
+                                    >Громкость</label
+                                >
+                                <div class="volume-control">
+                                    <input
+                                        type="range"
+                                        id="soundVolume"
+                                        min="0"
+                                        max="100"
+                                        value="30"
+                                        class="slider"
+                                    />
+                                    <span id="volumeValue" class="volume-value"
+                                        >30%</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <h3 data-i18n="animation">Анимация</h3>
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        id="enableAnimation"
+                                    />
+                                    <span data-i18n="enableAnimation"
+                                        >Включить анимацию при вставке</span
+                                    >
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label
+                                    for="animationType"
+                                    data-i18n="animationType"
+                                    >Тип анимации</label
+                                >
+                                <select id="animationType" class="select">
+                                    <option
+                                        value="confetti"
+                                        data-i18n="confettiAnimation"
+                                    >
+                                        Конфетти
+                                    </option>
+                                    <option
+                                        value="leaves"
+                                        data-i18n="leavesAnimation"
+                                    >
+                                        Падающие листья
+                                    </option>
+                                    <option
+                                        value="sparkle"
+                                        data-i18n="sparkleAnimation"
+                                    >
+                                        Искры
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button
+                            id="saveSettingsBtn"
+                            class="btn btn-primary btn-large"
+                        >
+                            <span class="btn-icon">
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <g
+                                        id="SVGRepo_bgCarrier"
+                                        stroke-width="0"
+                                    ></g>
+                                    <g
+                                        id="SVGRepo_tracerCarrier"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    ></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path
+                                            d="M9.5 14.4L10.9286 16L14.5 12"
+                                            stroke="currentColor"
+                                            stroke-width="2.4"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        ></path>
+                                        <path
+                                            d="M2 11.9997C2 7.28562 2 4.9286 3.46447 3.46413C4.70529 2.22331 6.58687 2.03382 10 2.00488M22 11.9997C22 7.28562 22 4.9286 20.5355 3.46413C19.2947 2.22331 17.4131 2.03382 14 2.00488"
+                                            stroke="currentColor"
+                                            stroke-width="2.4"
+                                            stroke-linecap="round"
+                                        ></path>
+                                        <path
+                                            d="M10 22C7.19974 22 5.79961 22 4.73005 21.455C3.78924 20.9757 3.02433 20.2108 2.54497 19.27C2 18.2004 2 16.8003 2 14C2 11.1997 2 9.79961 2.54497 8.73005C3.02433 7.78924 3.78924 7.02433 4.73005 6.54497C5.79961 6 7.19974 6 10 6H14C16.8003 6 18.2004 6 19.27 6.54497C20.2108 7.02433 20.9757 7.78924 21.455 8.73005C22 9.79961 22 11.1997 22 14C22 16.8003 22 18.2004 21.455 19.27C20.9757 20.2108 20.2108 20.9757 19.27 21.455C18.2004 22 16.8003 22 14 22"
+                                            stroke="currentColor"
+                                            stroke-width="2.4"
+                                            stroke-linecap="round"
+                                        ></path>
+                                    </g>
+                                </svg>
+                            </span>
+                            <span data-i18n="saveSettings"
+                                >Сохранить настройки</span
+                            >
+                        </button>
+                    </div>
+                </main>
+            </div>
+
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-links">
+                        <a
+                            href="https://t.me/kilrea"
+                            target="_blank"
+                            class="footer-link"
+                        >
+                            <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"
+                                />
+                            </svg>
+                            Telegram
+                        </a>
+                        <span class="separator">•</span>
+                        Theme based on
+                        <a
+                            href="https://github.com/enkia/tokyo-night-vscode-theme"
+                            target="_blank"
+                            class="footer-link"
+                        >
+                            <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path
+                                    d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"
+                                />
+                            </svg>
+                            Tokyo Night Theme
+                        </a>
+                    </div>
+                    <div class="footer-credits">SnipType v1.0.0</div>
+                </div>
+            </footer>
+        </div>
+
+        <input
+            type="file"
+            id="importFile"
+            accept=".json"
+            style="display: none"
+        />
+
+        <div id="toast" class="toast">
+            <div class="toast-icon"></div>
+            <div class="toast-message"></div>
+        </div>
+
+        <script src="i18n.js"></script>
+        <script src="options.js"></script>
+    </body>
+</html>

@@ -1,0 +1,127 @@
+/* Rose Pine Theme */
+:root {
+  --base: #191724;
+  --surface: #1f1d2e;
+  --overlay: #26233a;
+  --muted: #6e6a86;
+  --subtle: #908caa;
+  --text: #e0def4;
+  --iris: #c4a7e7;
+  --foam: #9ccfd8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 350px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--base);
+  color: var(--text);
+}
+
+.popup {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+}
+
+header {
+  padding: 20px;
+  background: var(--surface);
+  border-bottom: 2px solid var(--overlay);
+}
+
+header h1 {
+  font-size: 1.3rem;
+  color: var(--iris);
+  font-weight: 600;
+}
+
+.snippet-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  min-height: 200px;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+}
+
+.snippet-item {
+  background: var(--surface);
+  border: 2px solid var(--overlay);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.snippet-item:hover {
+  border-color: var(--iris);
+  transform: translateX(4px);
+}
+
+.snippet-label {
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.snippet-shortcut {
+  font-size: 0.85rem;
+  color: var(--foam);
+  font-family: 'Courier New', monospace;
+}
+
+footer {
+  padding: 15px;
+  background: var(--surface);
+  border-top: 2px solid var(--overlay);
+}
+
+.btn {
+  width: 100%;
+  background: var(--iris);
+  color: var(--base);
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background: #d4bfed;
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--overlay);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
