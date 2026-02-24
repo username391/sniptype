@@ -1,6 +1,7 @@
 [English version → README.md](./README.md)
 
 SnipType — это расширение для Firefox для быстрой подстановки текстовых сниппетов по шорткату.
+![Snippet Screenshot](./screenshot.png)
 
 Вы вводите `/hi` → вместо /hi вставляется заданный текст.
 

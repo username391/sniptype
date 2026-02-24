@@ -1,6 +1,7 @@
 [Русская версия → README_RUS.md](./README_RUS.md)
 
 SnipType is a Firefox extension for fast text snippet expansion using typed shortcuts.
+![Snippet Screenshot](./screenshot.png)
 
 Type `/hi` → get predefined text instantly.
 
