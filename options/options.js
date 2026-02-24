@@ -558,7 +558,8 @@ function showToast(messageKey, type = 'success') {
 		const svg = doc.documentElement
 		toastIcon.appendChild(svg)
 	} catch {
-		const frag = document.createRange().createContextualFragment(iconSvg)
+		// const frag = document.createRange().createContextualFragment(iconSvg)
+		const frag = sanitizeHTMLToFragment(iconSvg)
 		toastIcon.appendChild(frag)
 	}
 	toast.className = 'toast show'
