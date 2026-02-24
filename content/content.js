@@ -8,6 +8,22 @@ let settings = {
 }
 let lastActiveElement = null
 
+// Safer HTML fragment builder (basic sanitizer)
+function sanitizeHTMLToFragment(html) {
+    const doc = new DOMParser().parseFromString(html, 'text/html')
+    const frag = document.createDocumentFragment()
+    if (!doc.body) return frag
+    for (const node of Array.from(doc.body.childNodes)) {
+        // Skip scripts/styles for safety
+        if (node.nodeType === Node.ELEMENT_NODE &&
+            (node.nodeName === 'SCRIPT' || node.nodeName === 'STYLE')) {
+            continue
+        }
+        frag.appendChild(document.importNode(node, true))
+    }
+    return frag
+}
+
 // Загрузка данных при запуске
 async function loadData() {
 	const data = await browser.storage.local.get(['snippets', 'settings'])
@@ -174,23 +190,17 @@ function insertIntoContentEditable(element, text, shortcutLength, richText) {
 	}
 	range.deleteContents()
 
-	if (richText) {
-		const tempDiv = document.createElement('div')
-		tempDiv.innerHTML = text
-		const fragment = document.createDocumentFragment()
+    if (richText) {
+        // Safer HTML insertion: parse and sanitize HTML to a fragment
+        const fragment = sanitizeHTMLToFragment(text)
+        range.insertNode(fragment)
+    } else {
+        const textNode = document.createTextNode(text)
+        range.insertNode(textNode)
 
-		while (tempDiv.firstChild) {
-			fragment.appendChild(tempDiv.firstChild)
-		}
-
-		range.insertNode(fragment)
-	} else {
-		const textNode = document.createTextNode(text)
-		range.insertNode(textNode)
-
-		range.setStartAfter(textNode)
-		range.setEndAfter(textNode)
-	}
+        range.setStartAfter(textNode)
+        range.setEndAfter(textNode)
+    }
 
 	selection.removeAllRanges()
 	selection.addRange(range)
